@@ -116,7 +116,7 @@ python manage.py test
 
 ## Этапы разработки
 
-См. [PLAN.md](PLAN.md) и [DEMO.md](DEMO.md).
+См. [PLAN.md](PLAN.md), [DEMO.md](DEMO.md), [GUIDE.md](GUIDE.md) (для защиты, объясняет проект на простом языке).
 
 - [x] Этап 0. Подготовка (репо, venv, .gitignore)
 - [x] Этап 1. [ER-диаграмма](docs/ER.md)
