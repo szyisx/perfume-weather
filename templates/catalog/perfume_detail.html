@@ -1,50 +1,81 @@
 {% extends "base.html" %}
-{% block title %}Парфюм — PerfumeWeather{% endblock %}
+{% block title %}{{ perfume.name }} — {{ perfume.brand.name }}{% endblock %}
 
 {% block content %}
 <section class="container-xxl">
+  <nav class="mb-4 small">
+    <a class="text-secondary text-decoration-none" href="{% url 'home' %}">Главная</a>
+    <span class="text-secondary mx-2">/</span>
+    <a class="text-secondary text-decoration-none" href="{% url 'perfume_list' %}">Каталог</a>
+    <span class="text-secondary mx-2">/</span>
+    <span class="pw-text-accent">{{ perfume.name }}</span>
+  </nav>
+
   <div class="row gy-5">
     <div class="col-lg-5">
-      <div class="pw-card-image" style="border-radius: 1rem; border: 1px solid var(--pw-border);">P/W</div>
+      <div class="pw-card-image" style="border-radius: 1rem; border: 1px solid var(--pw-border); aspect-ratio: 4/5;">
+        {% if perfume.image %}
+          <img src="{{ perfume.image.url }}" alt="{{ perfume.name }}" style="width:100%;height:100%;object-fit:cover;">
+        {% else %}
+          P/W
+        {% endif %}
+      </div>
     </div>
+
     <div class="col-lg-7">
-      <span class="pw-section-eyebrow">Demo Brand</span>
-      <h1 class="pw-section-title mt-2">Название парфюма</h1>
-      <p class="text-secondary">Описание парфюма появится на этапе 4 из БД.</p>
+      <span class="pw-section-eyebrow">{{ perfume.brand.name }}{% if perfume.brand.country %} · {{ perfume.brand.country.name }}{% endif %}</span>
+      <h1 class="pw-section-title mt-2">{{ perfume.name }}</h1>
+
+      {% if perfume.description %}
+        <p class="text-secondary mt-3" style="max-width: 36rem;">{{ perfume.description }}</p>
+      {% endif %}
 
       <div class="row g-3 mt-3">
         <div class="col-4">
           <div class="text-secondary small">Год</div>
-          <div class="fs-5">2022</div>
+          <div class="fs-5">{{ perfume.year|default:"—" }}</div>
         </div>
         <div class="col-4">
           <div class="text-secondary small">Гендер</div>
-          <div class="fs-5">Унисекс</div>
+          <div class="fs-5">{{ perfume.get_gender_display }}</div>
         </div>
         <div class="col-4">
           <div class="text-secondary small">Стойкость</div>
-          <div class="fs-5">Средняя</div>
+          <div class="fs-5">{{ perfume.get_longevity_display }}</div>
         </div>
       </div>
 
-      <div class="mt-4">
-        <div class="pw-section-eyebrow">Семейства</div>
-        <div class="mt-2">
-          <span class="pw-chip">Цитрусовые</span>
-          <span class="pw-chip">Свежие</span>
+      {% if perfume.families.all %}
+        <div class="mt-4">
+          <div class="pw-section-eyebrow">Семейства</div>
+          <div class="mt-2">
+            {% for f in perfume.families.all %}
+              <span class="pw-chip">{{ f.name }}</span>
+            {% endfor %}
+          </div>
         </div>
-      </div>
+      {% endif %}
 
-      <div class="mt-4">
-        <div class="pw-section-eyebrow">Ноты</div>
-        <div class="mt-2">
-          <span class="pw-chip">Бергамот</span>
-          <span class="pw-chip">Лимон</span>
-          <span class="pw-chip">Кедр</span>
+      {% if perfume.notes.all %}
+        <div class="mt-4">
+          <div class="pw-section-eyebrow">Пирамида нот</div>
+          <div class="row g-3 mt-1">
+            {% regroup perfume.notes.all by type as note_groups %}
+            {% for group in note_groups %}
+              <div class="col-md-4">
+                <div class="text-secondary small mb-2">
+                  {% if group.grouper == "top" %}Верхние{% elif group.grouper == "heart" %}Сердечные{% else %}Базовые{% endif %}
+                </div>
+                {% for note in group.list %}
+                  <span class="pw-chip">{{ note.name }}</span>
+                {% endfor %}
+              </div>
+            {% endfor %}
+          </div>
         </div>
-      </div>
+      {% endif %}
 
-      <div class="mt-4 d-flex gap-3">
+      <div class="mt-5 d-flex gap-3">
         <button class="btn pw-btn-accent px-4" disabled>В коллекцию (этап 5)</button>
         <a href="{% url 'perfume_list' %}" class="btn btn-outline-light">К каталогу</a>
       </div>

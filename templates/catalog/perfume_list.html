@@ -8,23 +8,104 @@
       <span class="pw-section-eyebrow">Каталог</span>
       <h1 class="pw-section-title mt-2 mb-0">Все парфюмы</h1>
     </div>
-    <p class="text-secondary mb-0">Этап 4 покажет реальные карточки из БД.</p>
+    <div class="text-secondary small">
+      Найдено: {{ paginator.count }}
+    </div>
   </div>
 
-  <div class="row g-4">
-    {% for i in "12345678" %}
-      <div class="col-6 col-md-4 col-lg-3">
-        <div class="pw-card h-100">
-          <div class="pw-card-image">P/W</div>
-          <div class="pw-card-body">
-            <div class="pw-card-brand">Demo Brand</div>
-            <div class="pw-card-name">Парфюм {{ forloop.counter }}</div>
-            <span class="pw-chip">Свежие</span>
-            <span class="pw-chip">Цитрусовые</span>
-          </div>
-        </div>
+  <form method="get" class="pw-hero-card p-3 p-md-4 mb-4">
+    <div class="row g-3 align-items-end">
+      <div class="col-12 col-md-4">
+        <label class="form-label small text-secondary">Поиск</label>
+        <input type="text" name="q" value="{{ selected.q }}" class="form-control" placeholder="Название или бренд">
       </div>
-    {% endfor %}
-  </div>
+      <div class="col-6 col-md-3">
+        <label class="form-label small text-secondary">Бренд</label>
+        <select name="brand" class="form-select">
+          <option value="">Все</option>
+          {% for b in brands %}
+            <option value="{{ b.id }}" {% if selected.brand == b.id|stringformat:"s" %}selected{% endif %}>{{ b.name }}</option>
+          {% endfor %}
+        </select>
+      </div>
+      <div class="col-6 col-md-3">
+        <label class="form-label small text-secondary">Семейство</label>
+        <select name="family" class="form-select">
+          <option value="">Все</option>
+          {% for f in families %}
+            <option value="{{ f.id }}" {% if selected.family == f.id|stringformat:"s" %}selected{% endif %}>{{ f.name }}</option>
+          {% endfor %}
+        </select>
+      </div>
+      <div class="col-6 col-md-2">
+        <label class="form-label small text-secondary">Гендер</label>
+        <select name="gender" class="form-select">
+          <option value="">Любой</option>
+          {% for value, label in genders %}
+            <option value="{{ value }}" {% if selected.gender == value %}selected{% endif %}>{{ label }}</option>
+          {% endfor %}
+        </select>
+      </div>
+      <div class="col-6 col-md-12 d-flex justify-content-end gap-2">
+        <a href="{% url 'perfume_list' %}" class="btn btn-outline-light">Сбросить</a>
+        <button type="submit" class="btn pw-btn-accent px-4">Применить</button>
+      </div>
+    </div>
+  </form>
+
+  {% if perfumes %}
+    <div class="row g-4">
+      {% for perfume in perfumes %}
+        <div class="col-6 col-md-4 col-lg-3">
+          <a href="{% url 'perfume_detail' perfume.pk %}" class="text-decoration-none">
+            <div class="pw-card h-100">
+              <div class="pw-card-image">
+                {% if perfume.image %}
+                  <img src="{{ perfume.image.url }}" alt="{{ perfume.name }}">
+                {% else %}
+                  P/W
+                {% endif %}
+              </div>
+              <div class="pw-card-body">
+                <div class="pw-card-brand">{{ perfume.brand.name }}</div>
+                <div class="pw-card-name">{{ perfume.name }}</div>
+                <div class="text-secondary small mb-2">
+                  {{ perfume.get_gender_display }}{% if perfume.year %} · {{ perfume.year }}{% endif %}
+                </div>
+                {% for f in perfume.families.all|slice:":3" %}
+                  <span class="pw-chip">{{ f.name }}</span>
+                {% endfor %}
+              </div>
+            </div>
+          </a>
+        </div>
+      {% endfor %}
+    </div>
+
+    {% if is_paginated %}
+      <nav class="mt-5">
+        <ul class="pagination justify-content-center">
+          {% if page_obj.has_previous %}
+            <li class="page-item"><a class="page-link" href="?page={{ page_obj.previous_page_number }}">‹</a></li>
+          {% endif %}
+          {% for num in paginator.page_range %}
+            <li class="page-item {% if num == page_obj.number %}active{% endif %}">
+              <a class="page-link" href="?page={{ num }}">{{ num }}</a>
+            </li>
+          {% endfor %}
+          {% if page_obj.has_next %}
+            <li class="page-item"><a class="page-link" href="?page={{ page_obj.next_page_number }}">›</a></li>
+          {% endif %}
+        </ul>
+      </nav>
+    {% endif %}
+  {% else %}
+    <div class="pw-hero-card text-center py-5">
+      <i class="bi bi-search fs-1 text-secondary"></i>
+      <h3 class="mt-3" style="font-family: var(--pw-font-display);">Ничего не найдено</h3>
+      <p class="text-secondary">Попробуйте сбросить фильтры.</p>
+      <a href="{% url 'perfume_list' %}" class="btn pw-btn-accent px-4">Сбросить</a>
+    </div>
+  {% endif %}
 </section>
 {% endblock %}
