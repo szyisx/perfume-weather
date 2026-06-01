@@ -1,0 +1,611 @@
+[
+{
+  "model": "catalog.country",
+  "pk": 1,
+  "fields": {
+    "name": "Франция"
+  }
+},
+{
+  "model": "catalog.country",
+  "pk": 2,
+  "fields": {
+    "name": "Италия"
+  }
+},
+{
+  "model": "catalog.country",
+  "pk": 3,
+  "fields": {
+    "name": "США"
+  }
+},
+{
+  "model": "catalog.country",
+  "pk": 4,
+  "fields": {
+    "name": "ОАЭ"
+  }
+},
+{
+  "model": "catalog.brand",
+  "pk": 1,
+  "fields": {
+    "name": "Maison Aurea",
+    "country": 1
+  }
+},
+{
+  "model": "catalog.brand",
+  "pk": 2,
+  "fields": {
+    "name": "Pellegrino Profumi",
+    "country": 2
+  }
+},
+{
+  "model": "catalog.brand",
+  "pk": 3,
+  "fields": {
+    "name": "Northshore Lab",
+    "country": 3
+  }
+},
+{
+  "model": "catalog.brand",
+  "pk": 4,
+  "fields": {
+    "name": "Dunes Couture",
+    "country": 4
+  }
+},
+{
+  "model": "catalog.brand",
+  "pk": 5,
+  "fields": {
+    "name": "Ateliér Verde",
+    "country": 1
+  }
+},
+{
+  "model": "catalog.family",
+  "pk": 1,
+  "fields": {
+    "name": "Цитрусовые",
+    "slug": "цитрусовые"
+  }
+},
+{
+  "model": "catalog.family",
+  "pk": 2,
+  "fields": {
+    "name": "Цветочные",
+    "slug": "цветочные"
+  }
+},
+{
+  "model": "catalog.family",
+  "pk": 3,
+  "fields": {
+    "name": "Фруктовые",
+    "slug": "фруктовые"
+  }
+},
+{
+  "model": "catalog.family",
+  "pk": 4,
+  "fields": {
+    "name": "Древесные",
+    "slug": "древесные"
+  }
+},
+{
+  "model": "catalog.family",
+  "pk": 5,
+  "fields": {
+    "name": "Восточные",
+    "slug": "восточные"
+  }
+},
+{
+  "model": "catalog.family",
+  "pk": 6,
+  "fields": {
+    "name": "Свежие",
+    "slug": "свежие"
+  }
+},
+{
+  "model": "catalog.family",
+  "pk": 7,
+  "fields": {
+    "name": "Зелёные",
+    "slug": "зелёные"
+  }
+},
+{
+  "model": "catalog.note",
+  "pk": 1,
+  "fields": {
+    "name": "Бергамот",
+    "type": "top",
+    "slug": "бергамот-top"
+  }
+},
+{
+  "model": "catalog.note",
+  "pk": 2,
+  "fields": {
+    "name": "Лимон",
+    "type": "top",
+    "slug": "лимон-top"
+  }
+},
+{
+  "model": "catalog.note",
+  "pk": 3,
+  "fields": {
+    "name": "Грейпфрут",
+    "type": "top",
+    "slug": "грейпфрут-top"
+  }
+},
+{
+  "model": "catalog.note",
+  "pk": 4,
+  "fields": {
+    "name": "Роза",
+    "type": "heart",
+    "slug": "роза-heart"
+  }
+},
+{
+  "model": "catalog.note",
+  "pk": 5,
+  "fields": {
+    "name": "Жасмин",
+    "type": "heart",
+    "slug": "жасмин-heart"
+  }
+},
+{
+  "model": "catalog.note",
+  "pk": 6,
+  "fields": {
+    "name": "Иланг-иланг",
+    "type": "heart",
+    "slug": "иланг-иланг-heart"
+  }
+},
+{
+  "model": "catalog.note",
+  "pk": 7,
+  "fields": {
+    "name": "Яблоко",
+    "type": "heart",
+    "slug": "яблоко-heart"
+  }
+},
+{
+  "model": "catalog.note",
+  "pk": 8,
+  "fields": {
+    "name": "Ваниль",
+    "type": "base",
+    "slug": "ваниль-base"
+  }
+},
+{
+  "model": "catalog.note",
+  "pk": 9,
+  "fields": {
+    "name": "Сандал",
+    "type": "base",
+    "slug": "сандал-base"
+  }
+},
+{
+  "model": "catalog.note",
+  "pk": 10,
+  "fields": {
+    "name": "Кедр",
+    "type": "base",
+    "slug": "кедр-base"
+  }
+},
+{
+  "model": "catalog.note",
+  "pk": 11,
+  "fields": {
+    "name": "Пачули",
+    "type": "base",
+    "slug": "пачули-base"
+  }
+},
+{
+  "model": "catalog.note",
+  "pk": 12,
+  "fields": {
+    "name": "Уд",
+    "type": "base",
+    "slug": "уд-base"
+  }
+},
+{
+  "model": "catalog.note",
+  "pk": 13,
+  "fields": {
+    "name": "Морская соль",
+    "type": "top",
+    "slug": "морская-соль-top"
+  }
+},
+{
+  "model": "catalog.note",
+  "pk": 14,
+  "fields": {
+    "name": "Мята",
+    "type": "top",
+    "slug": "мята-top"
+  }
+},
+{
+  "model": "catalog.note",
+  "pk": 15,
+  "fields": {
+    "name": "Дубовый мох",
+    "type": "base",
+    "slug": "дубовый-мох-base"
+  }
+},
+{
+  "model": "catalog.perfume",
+  "pk": 1,
+  "fields": {
+    "name": "Citrus Dawn",
+    "brand": 1,
+    "year": 2021,
+    "gender": "unisex",
+    "longevity": "medium",
+    "description": "Лёгкий цитрусовый старт с акцентом на бергамот и грейпфрут.",
+    "image": "",
+    "created_at": "2026-06-01T18:44:57.859Z",
+    "families": [
+      6,
+      1
+    ],
+    "notes": [
+      1,
+      3,
+      10,
+      14
+    ]
+  }
+},
+{
+  "model": "catalog.perfume",
+  "pk": 2,
+  "fields": {
+    "name": "Velvet Rose",
+    "brand": 2,
+    "year": 2019,
+    "gender": "female",
+    "longevity": "strong",
+    "description": "Глубокая роза с тёплой ванилью и сандалом.",
+    "image": "",
+    "created_at": "2026-06-01T18:44:57.864Z",
+    "families": [
+      5,
+      2
+    ],
+    "notes": [
+      8,
+      4,
+      9
+    ]
+  }
+},
+{
+  "model": "catalog.perfume",
+  "pk": 3,
+  "fields": {
+    "name": "Oud Sahara",
+    "brand": 4,
+    "year": 2022,
+    "gender": "unisex",
+    "longevity": "strong",
+    "description": "Восточный аромат с удом и тёмной древесиной.",
+    "image": "",
+    "created_at": "2026-06-01T18:44:57.867Z",
+    "families": [
+      5,
+      4
+    ],
+    "notes": [
+      11,
+      9,
+      12
+    ]
+  }
+},
+{
+  "model": "catalog.perfume",
+  "pk": 4,
+  "fields": {
+    "name": "Pacific Wave",
+    "brand": 3,
+    "year": 2023,
+    "gender": "male",
+    "longevity": "medium",
+    "description": "Морская свежесть с цитрусовой ноткой.",
+    "image": "",
+    "created_at": "2026-06-01T18:44:57.869Z",
+    "families": [
+      6,
+      1
+    ],
+    "notes": [
+      10,
+      2,
+      13
+    ]
+  }
+},
+{
+  "model": "catalog.perfume",
+  "pk": 5,
+  "fields": {
+    "name": "Forest Pulse",
+    "brand": 5,
+    "year": 2020,
+    "gender": "unisex",
+    "longevity": "strong",
+    "description": "Зелёный древесный аромат с мхом и кедром.",
+    "image": "",
+    "created_at": "2026-06-01T18:44:57.872Z",
+    "families": [
+      4,
+      7
+    ],
+    "notes": [
+      15,
+      10,
+      11
+    ]
+  }
+},
+{
+  "model": "catalog.perfume",
+  "pk": 6,
+  "fields": {
+    "name": "Apple Bloom",
+    "brand": 1,
+    "year": 2022,
+    "gender": "female",
+    "longevity": "medium",
+    "description": "Сочное яблоко и нежные цветочные ноты.",
+    "image": "",
+    "created_at": "2026-06-01T18:44:57.874Z",
+    "families": [
+      3,
+      2
+    ],
+    "notes": [
+      5,
+      6,
+      7
+    ]
+  }
+},
+{
+  "model": "catalog.perfume",
+  "pk": 7,
+  "fields": {
+    "name": "Solar Mint",
+    "brand": 3,
+    "year": 2024,
+    "gender": "unisex",
+    "longevity": "weak",
+    "description": "Освежающая мята и цитрус для жаркого дня.",
+    "image": "",
+    "created_at": "2026-06-01T18:44:57.877Z",
+    "families": [
+      6,
+      1
+    ],
+    "notes": [
+      1,
+      2,
+      14
+    ]
+  }
+},
+{
+  "model": "catalog.perfume",
+  "pk": 8,
+  "fields": {
+    "name": "Winter Amber",
+    "brand": 2,
+    "year": 2018,
+    "gender": "unisex",
+    "longevity": "strong",
+    "description": "Тёплая амбра, ваниль и древесина для холодных дней.",
+    "image": "",
+    "created_at": "2026-06-01T18:44:57.879Z",
+    "families": [
+      5,
+      4
+    ],
+    "notes": [
+      8,
+      9,
+      12
+    ]
+  }
+},
+{
+  "model": "catalog.perfume",
+  "pk": 9,
+  "fields": {
+    "name": "Spring Jasmine",
+    "brand": 5,
+    "year": 2021,
+    "gender": "female",
+    "longevity": "medium",
+    "description": "Лёгкий весенний жасмин с цитрусовым шлейфом.",
+    "image": "",
+    "created_at": "2026-06-01T18:44:57.882Z",
+    "families": [
+      7,
+      2
+    ],
+    "notes": [
+      1,
+      15,
+      5
+    ]
+  }
+},
+{
+  "model": "catalog.perfume",
+  "pk": 10,
+  "fields": {
+    "name": "Desert Wood",
+    "brand": 4,
+    "year": 2020,
+    "gender": "male",
+    "longevity": "strong",
+    "description": "Сухая древесина с пряным удом.",
+    "image": "",
+    "created_at": "2026-06-01T18:44:57.884Z",
+    "families": [
+      5,
+      4
+    ],
+    "notes": [
+      10,
+      11,
+      12
+    ]
+  }
+},
+{
+  "model": "catalog.collection",
+  "pk": 1,
+  "fields": {
+    "user": 1,
+    "perfume": 1,
+    "added_at": "2026-06-01T19:01:30.283Z"
+  }
+},
+{
+  "model": "weather.weatherrule",
+  "pk": 1,
+  "fields": {
+    "condition": "hot",
+    "temp_min": 25.0,
+    "temp_max": 50.0,
+    "family": 1
+  }
+},
+{
+  "model": "weather.weatherrule",
+  "pk": 2,
+  "fields": {
+    "condition": "hot",
+    "temp_min": 25.0,
+    "temp_max": 50.0,
+    "family": 6
+  }
+},
+{
+  "model": "weather.weatherrule",
+  "pk": 3,
+  "fields": {
+    "condition": "warm",
+    "temp_min": 15.0,
+    "temp_max": 25.0,
+    "family": 2
+  }
+},
+{
+  "model": "weather.weatherrule",
+  "pk": 4,
+  "fields": {
+    "condition": "warm",
+    "temp_min": 15.0,
+    "temp_max": 25.0,
+    "family": 3
+  }
+},
+{
+  "model": "weather.weatherrule",
+  "pk": 5,
+  "fields": {
+    "condition": "warm",
+    "temp_min": 15.0,
+    "temp_max": 25.0,
+    "family": 7
+  }
+},
+{
+  "model": "weather.weatherrule",
+  "pk": 6,
+  "fields": {
+    "condition": "cool",
+    "temp_min": 5.0,
+    "temp_max": 15.0,
+    "family": 7
+  }
+},
+{
+  "model": "weather.weatherrule",
+  "pk": 7,
+  "fields": {
+    "condition": "cool",
+    "temp_min": 5.0,
+    "temp_max": 15.0,
+    "family": 4
+  }
+},
+{
+  "model": "weather.weatherrule",
+  "pk": 8,
+  "fields": {
+    "condition": "cold",
+    "temp_min": -30.0,
+    "temp_max": 5.0,
+    "family": 5
+  }
+},
+{
+  "model": "weather.weatherrule",
+  "pk": 9,
+  "fields": {
+    "condition": "cold",
+    "temp_min": -30.0,
+    "temp_max": 5.0,
+    "family": 4
+  }
+},
+{
+  "model": "weather.weatherrule",
+  "pk": 10,
+  "fields": {
+    "condition": "rain",
+    "temp_min": -50.0,
+    "temp_max": 50.0,
+    "family": 4
+  }
+},
+{
+  "model": "weather.weatherrule",
+  "pk": 11,
+  "fields": {
+    "condition": "snow",
+    "temp_min": -50.0,
+    "temp_max": 5.0,
+    "family": 5
+  }
+}
+]
