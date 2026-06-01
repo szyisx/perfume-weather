@@ -1,0 +1,267 @@
+/* PerfumeWeather — кастомные стили поверх Bootstrap 5. */
+
+:root {
+  --pw-bg: #0d0c0a;
+  --pw-bg-2: #161410;
+  --pw-surface: #1c1915;
+  --pw-surface-2: #221f1a;
+  --pw-border: #2c2822;
+  --pw-text: #ece6d8;
+  --pw-text-muted: #a89e8c;
+  --pw-accent: #c9a86a;
+  --pw-accent-2: #e8c98c;
+  --pw-accent-soft: rgba(201, 168, 106, 0.12);
+  --pw-rose: #b56b6b;
+  --pw-shadow: 0 30px 80px rgba(0, 0, 0, 0.45);
+
+  --pw-font-display: "Cormorant Garamond", "Georgia", serif;
+  --pw-font-body: "Inter", "Helvetica Neue", sans-serif;
+}
+
+html, body {
+  background: var(--pw-bg);
+  color: var(--pw-text);
+  font-family: var(--pw-font-body);
+  -webkit-font-smoothing: antialiased;
+}
+
+.pw-body {
+  background:
+    radial-gradient(1200px 600px at 80% -10%, rgba(201, 168, 106, 0.10), transparent 60%),
+    radial-gradient(900px 500px at -10% 30%, rgba(181, 107, 107, 0.08), transparent 60%),
+    var(--pw-bg);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.pw-main {
+  flex: 1;
+  padding: 3rem 0 5rem;
+}
+
+/* ---- Навбар ---- */
+
+.pw-navbar {
+  background: rgba(13, 12, 10, 0.78);
+  backdrop-filter: blur(18px);
+  border-bottom: 1px solid var(--pw-border);
+  padding-block: 0.85rem;
+}
+
+.pw-brand {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  color: var(--pw-text) !important;
+}
+
+.pw-brand-mark {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--pw-font-display);
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  width: 2.4rem;
+  height: 2.4rem;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--pw-accent), #8a6f3f);
+  color: #1a1610;
+  box-shadow: 0 6px 22px rgba(201, 168, 106, 0.35);
+}
+
+.pw-brand-name {
+  font-family: var(--pw-font-display);
+  font-size: 1.45rem;
+  letter-spacing: 0.05em;
+}
+
+.navbar .nav-link {
+  color: var(--pw-text-muted);
+  font-weight: 500;
+  letter-spacing: 0.02em;
+}
+
+.navbar .nav-link:hover,
+.navbar .nav-link:focus {
+  color: var(--pw-accent-2);
+}
+
+.pw-btn-accent {
+  background: var(--pw-accent);
+  color: #14110b;
+  border: 1px solid var(--pw-accent);
+  font-weight: 600;
+}
+
+.pw-btn-accent:hover,
+.pw-btn-accent:focus {
+  background: var(--pw-accent-2);
+  color: #14110b;
+}
+
+/* ---- Hero ---- */
+
+.pw-hero {
+  position: relative;
+  overflow: hidden;
+  padding: 5rem 0 4rem;
+}
+
+.pw-hero h1 {
+  font-family: var(--pw-font-display);
+  font-weight: 600;
+  font-size: clamp(2.6rem, 1.6rem + 4.5vw, 5.5rem);
+  line-height: 1.02;
+  letter-spacing: -0.01em;
+}
+
+.pw-hero h1 em {
+  font-style: italic;
+  color: var(--pw-accent-2);
+}
+
+.pw-hero .lead {
+  color: var(--pw-text-muted);
+  font-size: 1.1rem;
+  max-width: 36rem;
+}
+
+.pw-hero-card {
+  background: linear-gradient(160deg, var(--pw-surface), var(--pw-surface-2));
+  border: 1px solid var(--pw-border);
+  border-radius: 1.25rem;
+  padding: 2rem;
+  box-shadow: var(--pw-shadow);
+}
+
+/* ---- Карточки ---- */
+
+.pw-card {
+  background: var(--pw-surface);
+  border: 1px solid var(--pw-border);
+  border-radius: 1rem;
+  overflow: hidden;
+  transition: transform .25s ease, border-color .25s ease, box-shadow .25s ease;
+}
+
+.pw-card:hover {
+  transform: translateY(-3px);
+  border-color: var(--pw-accent);
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.4);
+}
+
+.pw-card-image {
+  aspect-ratio: 4 / 5;
+  background:
+    radial-gradient(circle at 50% 30%, rgba(201,168,106,0.25), transparent 60%),
+    linear-gradient(180deg, #2a2620 0%, #1a1612 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--pw-accent);
+  font-family: var(--pw-font-display);
+  font-size: 2.4rem;
+}
+
+.pw-card-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.pw-card-body {
+  padding: 1.1rem 1.2rem 1.3rem;
+}
+
+.pw-card-brand {
+  font-size: .75rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--pw-text-muted);
+}
+
+.pw-card-name {
+  font-family: var(--pw-font-display);
+  font-size: 1.4rem;
+  color: var(--pw-text);
+  margin: 0.15rem 0 0.5rem;
+}
+
+.pw-chip {
+  display: inline-block;
+  padding: 0.18rem 0.55rem;
+  border-radius: 999px;
+  background: var(--pw-accent-soft);
+  color: var(--pw-accent-2);
+  font-size: 0.72rem;
+  letter-spacing: 0.05em;
+  margin: 0.15rem 0.2rem 0 0;
+  border: 1px solid rgba(201,168,106,0.25);
+}
+
+/* ---- Формы ---- */
+
+.pw-form-card {
+  background: var(--pw-surface);
+  border: 1px solid var(--pw-border);
+  border-radius: 1rem;
+  padding: 2rem;
+  max-width: 26rem;
+  margin: 0 auto;
+  box-shadow: var(--pw-shadow);
+}
+
+.pw-form-card h1 {
+  font-family: var(--pw-font-display);
+  font-size: 2rem;
+  margin-bottom: 1.25rem;
+}
+
+.form-control, .form-select {
+  background: var(--pw-bg-2);
+  border: 1px solid var(--pw-border);
+  color: var(--pw-text);
+}
+
+.form-control:focus, .form-select:focus {
+  background: var(--pw-bg-2);
+  color: var(--pw-text);
+  border-color: var(--pw-accent);
+  box-shadow: 0 0 0 0.2rem rgba(201,168,106,0.15);
+}
+
+/* ---- Секции ---- */
+
+.pw-section-title {
+  font-family: var(--pw-font-display);
+  font-size: 2.2rem;
+  margin-bottom: 0.4rem;
+}
+
+.pw-section-eyebrow {
+  font-size: .8rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--pw-accent);
+}
+
+.pw-divider {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--pw-border), transparent);
+  margin: 3rem 0;
+}
+
+/* ---- Футер ---- */
+
+.pw-footer {
+  background: var(--pw-bg-2);
+  border-top: 1px solid var(--pw-border);
+  padding: 2rem 0;
+}
+
+/* ---- Утилиты ---- */
+
+.pw-text-muted { color: var(--pw-text-muted) !important; }
+.pw-text-accent { color: var(--pw-accent-2); }

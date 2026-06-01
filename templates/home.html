@@ -1,0 +1,68 @@
+{% extends "base.html" %}
+{% block title %}PerfumeWeather — подбор парфюма по погоде{% endblock %}
+
+{% block content %}
+<section class="pw-hero">
+  <div class="container-xxl">
+    <div class="row align-items-center gy-5">
+      <div class="col-lg-7">
+        <span class="pw-section-eyebrow">Парфюм × Погода</span>
+        <h1 class="mt-3">
+          Аромат, который<br>
+          <em>совпадает с небом</em><br>
+          за окном.
+        </h1>
+        <p class="lead mt-4">
+          Введите город — система запросит текущую погоду в Open-Meteo
+          и подберёт ароматные семейства, которые звучат именно сейчас.
+        </p>
+        <div class="d-flex gap-3 mt-4">
+          <a href="{% url 'perfume_list' %}" class="btn pw-btn-accent btn-lg px-4">Открыть каталог</a>
+          <a href="#recommend" class="btn btn-outline-light btn-lg px-4">Подобрать по погоде</a>
+        </div>
+      </div>
+
+      <div class="col-lg-5">
+        <div class="pw-hero-card" id="recommend">
+          <span class="pw-section-eyebrow">Подбор</span>
+          <h2 class="pw-section-title mt-2">Какая у вас погода?</h2>
+          <form method="get" action="#" class="mt-3">
+            <div class="mb-3">
+              <label class="form-label small text-secondary">Город</label>
+              <input type="text" name="city" class="form-control form-control-lg" placeholder="Москва, Париж, Дубай...">
+            </div>
+            <button type="submit" class="btn pw-btn-accent w-100 py-2" disabled>
+              <i class="bi bi-cloud-sun me-1"></i> Подобрать (этап 7)
+            </button>
+            <p class="small text-secondary mt-3 mb-0">
+              Алгоритм рекомендаций включится на этапе 7. Сейчас — заглушка.
+            </p>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="pw-divider"></div>
+
+<section class="container-xxl">
+  <div class="row gy-4">
+    <div class="col-md-4">
+      <span class="pw-section-eyebrow">01</span>
+      <h3 class="pw-section-title mt-2">Семейства</h3>
+      <p class="text-secondary">Цветочные, цитрусовые, восточные, древесные — каждое со своим характером.</p>
+    </div>
+    <div class="col-md-4">
+      <span class="pw-section-eyebrow">02</span>
+      <h3 class="pw-section-title mt-2">Ноты</h3>
+      <p class="text-secondary">Верхние, сердечные, базовые — пирамида парфюма во времени.</p>
+    </div>
+    <div class="col-md-4">
+      <span class="pw-section-eyebrow">03</span>
+      <h3 class="pw-section-title mt-2">Погода</h3>
+      <p class="text-secondary">Open-Meteo даёт температуру и условия. Правила связывают их с семействами.</p>
+    </div>
+  </div>
+</section>
+{% endblock %}
