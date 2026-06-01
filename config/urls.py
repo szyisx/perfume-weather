@@ -14,6 +14,7 @@ urlpatterns = [
     path("", home, name="home"),
     path("", include("catalog.urls")),
     path("", include("accounts.urls")),
+    path("", include("weather.urls")),
 ]
 
 if settings.DEBUG:
