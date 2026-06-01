@@ -1,0 +1,64 @@
+{% extends "base.html" %}
+{% block title %}Профиль {{ user.username }} — PerfumeWeather{% endblock %}
+
+{% block content %}
+<section class="container-xxl">
+  <div class="row gy-4">
+    <div class="col-lg-4">
+      <div class="pw-hero-card text-center">
+        <div class="pw-brand-mark mx-auto" style="width: 5rem; height: 5rem; font-size: 1.6rem;">
+          {{ user.username|slice:":1"|upper }}
+        </div>
+        <h1 class="mt-3" style="font-family: var(--pw-font-display);">{{ user.username }}</h1>
+        {% if user.email %}
+          <p class="text-secondary mb-1">{{ user.email }}</p>
+        {% endif %}
+        <p class="text-secondary small mb-4">С нами с {{ user.date_joined|date:"d.m.Y" }}</p>
+
+        <form action="{% url 'logout' %}" method="post" class="d-grid">
+          {% csrf_token %}
+          <button class="btn btn-outline-light" type="submit">
+            <i class="bi bi-box-arrow-right me-2"></i>Выйти
+          </button>
+        </form>
+      </div>
+    </div>
+
+    <div class="col-lg-8">
+      <span class="pw-section-eyebrow">Статистика</span>
+      <h2 class="pw-section-title mt-2">Коллекция</h2>
+      <p class="text-secondary">Парфюмов в избранном: <strong class="pw-text-accent">{{ items_count }}</strong></p>
+
+      {% if items %}
+        <div class="row g-3 mt-2">
+          {% for item in items|slice:":6" %}
+            <div class="col-6 col-md-4">
+              <a href="{% url 'perfume_detail' item.perfume.pk %}" class="pw-card d-block text-decoration-none">
+                <div class="pw-card-image" style="aspect-ratio: 4/3;">
+                  {% if item.perfume.image %}
+                    <img src="{{ item.perfume.image.url }}" alt="{{ item.perfume.name }}">
+                  {% else %}
+                    P/W
+                  {% endif %}
+                </div>
+                <div class="pw-card-body">
+                  <div class="pw-card-brand">{{ item.perfume.brand.name }}</div>
+                  <div class="pw-card-name" style="font-size: 1.1rem;">{{ item.perfume.name }}</div>
+                </div>
+              </a>
+            </div>
+          {% endfor %}
+        </div>
+        <div class="mt-4">
+          <a href="{% url 'collection_list' %}" class="btn btn-outline-light">Открыть всю коллекцию →</a>
+        </div>
+      {% else %}
+        <div class="pw-hero-card text-center mt-3">
+          <p class="text-secondary mb-3">Коллекция пуста. Откройте каталог и сохраните понравившееся.</p>
+          <a href="{% url 'perfume_list' %}" class="btn pw-btn-accent px-4">Открыть каталог</a>
+        </div>
+      {% endif %}
+    </div>
+  </div>
+</section>
+{% endblock %}
