@@ -12,10 +12,10 @@ source venv/bin/activate
 python manage.py migrate
 python manage.py loaddata fixtures/initial.json
 python manage.py createsuperuser   # admin / admin12345 (если ещё нет)
-python manage.py runserver
+python manage.py runserver         # если порт 8000 занят → runserver 8080
 ```
 
-Открыть http://127.0.0.1:8000/ в браузере.
+Открыть http://127.0.0.1:8000/ (или :8080) в браузере.
 
 ---
 

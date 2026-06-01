@@ -32,10 +32,10 @@ pip install -r requirements.txt
 python manage.py migrate
 python manage.py loaddata fixtures/initial.json
 python manage.py createsuperuser
-python manage.py runserver
+python manage.py runserver           # если порт 8000 занят → runserver 8080
 ```
 
-Открыть http://127.0.0.1:8000/
+Открыть http://127.0.0.1:8000/ (или 8080)
 
 **Демо-логин админа** (если использовался `seed_demo`):
 `admin` / `admin12345`
@@ -89,6 +89,8 @@ top-10 perfumes
 - Ереван, +12°C, дождь → `rain` → Древесные → 2 парфюма
 
 См. `weather/services.py` и `docs/ER.md`.
+
+**Сетевая устойчивость:** клиент Open-Meteo форсит IPv4 и имеет DoH-fallback (Cloudflare 1.1.1.1) на случай, если на машине сломан системный DNS или нет IPv6-маршрута.
 
 ---
 
