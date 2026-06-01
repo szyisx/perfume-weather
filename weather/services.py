@@ -19,14 +19,54 @@ FORECAST_URL = "https://api.open-meteo.com/v1/forecast"
 HTTP_TIMEOUT = 6
 
 
-# Принудительно резолвим только IPv4: в окружениях без IPv6-маршрута
-# requests падает с "[Errno 101] Network is unreachable" при попытке
-# подключиться к IPv6-адресу. Форсим AF_INET — стабильнее.
+# Форсим IPv4: на хостах без IPv6-маршрута requests падает с Errno 101.
 def _allowed_gai_family_ipv4_only():
     return socket.AF_INET
 
 
 urllib3_cn.allowed_gai_family = _allowed_gai_family_ipv4_only
+
+
+# DoH-fallback: если системный DNS не отвечает (Errno -5), резолвим
+# хост через Cloudflare 1.1.1.1 (DNS-over-HTTPS). 1.1.1.1 — IP, поэтому
+# не требует DNS для самого DoH-запроса. Cloudflare cert валиден для
+# 1.1.1.1 (есть в SAN).
+_DNS_CACHE: dict[str, str] = {}
+_real_getaddrinfo = socket.getaddrinfo
+
+
+def _resolve_via_doh(hostname: str) -> str | None:
+    if hostname in _DNS_CACHE:
+        return _DNS_CACHE[hostname]
+    try:
+        response = requests.get(
+            "https://1.1.1.1/dns-query",
+            params={"name": hostname, "type": "A"},
+            headers={"accept": "application/dns-json"},
+            timeout=5,
+        )
+        response.raise_for_status()
+        for answer in response.json().get("Answer", []):
+            if answer.get("type") == 1:
+                ip = answer["data"]
+                _DNS_CACHE[hostname] = ip
+                return ip
+    except Exception:
+        return None
+    return None
+
+
+def _patched_getaddrinfo(host, port, *args, **kwargs):
+    try:
+        return _real_getaddrinfo(host, port, *args, **kwargs)
+    except socket.gaierror:
+        ip = _resolve_via_doh(host)
+        if not ip:
+            raise
+        return [(socket.AF_INET, socket.SOCK_STREAM, 0, "", (ip, port))]
+
+
+socket.getaddrinfo = _patched_getaddrinfo
 
 
 class WeatherError(Exception):
