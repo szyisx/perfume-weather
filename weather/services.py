@@ -2,9 +2,11 @@
 
 from __future__ import annotations
 
+import socket
 from dataclasses import dataclass
 
 import requests
+import urllib3.util.connection as urllib3_cn
 from django.db.models import Count, Q, QuerySet
 
 from catalog.models import Family, Perfume
@@ -15,6 +17,16 @@ from .models import WeatherRule
 GEOCODE_URL = "https://geocoding-api.open-meteo.com/v1/search"
 FORECAST_URL = "https://api.open-meteo.com/v1/forecast"
 HTTP_TIMEOUT = 6
+
+
+# Принудительно резолвим только IPv4: в окружениях без IPv6-маршрута
+# requests падает с "[Errno 101] Network is unreachable" при попытке
+# подключиться к IPv6-адресу. Форсим AF_INET — стабильнее.
+def _allowed_gai_family_ipv4_only():
+    return socket.AF_INET
+
+
+urllib3_cn.allowed_gai_family = _allowed_gai_family_ipv4_only
 
 
 class WeatherError(Exception):
