@@ -1,0 +1,52 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Virtual env
+venv/
+env/
+.venv/
+ENV/
+
+# Django
+*.log
+local_settings.py
+db.sqlite3
+db.sqlite3-journal
+media/
+staticfiles/
+
+# Environment
+.env
+.env.local
+.env.*.local
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Migrations cache (keep migration files, ignore caches)
+**/migrations/__pycache__/
+
+# Testing
+.coverage
+.pytest_cache/
+htmlcov/
+.tox/
+
+# Distribution
+build/
+dist/
