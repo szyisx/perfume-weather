@@ -75,9 +75,39 @@
         </div>
       {% endif %}
 
-      <div class="mt-5 d-flex gap-3">
-        <button class="btn pw-btn-accent px-4" disabled>В коллекцию (этап 5)</button>
+      <div class="mt-5 d-flex flex-wrap gap-3">
+        {% if user.is_authenticated %}
+          {% if in_collection %}
+            <form method="post" action="{% url 'collection_remove' perfume.pk %}" class="d-inline">
+              {% csrf_token %}
+              <input type="hidden" name="next" value="{% url 'perfume_detail' perfume.pk %}">
+              <button class="btn btn-outline-light px-4" type="submit">
+                <i class="bi bi-bookmark-check-fill me-1"></i> Убрать из коллекции
+              </button>
+            </form>
+          {% else %}
+            <form method="post" action="{% url 'collection_add' perfume.pk %}" class="d-inline">
+              {% csrf_token %}
+              <input type="hidden" name="next" value="{% url 'perfume_detail' perfume.pk %}">
+              <button class="btn pw-btn-accent px-4" type="submit">
+                <i class="bi bi-bookmark-plus me-1"></i> В коллекцию
+              </button>
+            </form>
+          {% endif %}
+        {% else %}
+          <a href="{% url 'login' %}?next={% url 'perfume_detail' perfume.pk %}" class="btn pw-btn-accent px-4">Войти, чтобы сохранить</a>
+        {% endif %}
+
         <a href="{% url 'perfume_list' %}" class="btn btn-outline-light">К каталогу</a>
+
+        {% if user.is_staff %}
+          <a href="{% url 'perfume_update' perfume.pk %}" class="btn btn-outline-warning">
+            <i class="bi bi-pencil me-1"></i> Редактировать
+          </a>
+          <a href="{% url 'perfume_delete' perfume.pk %}" class="btn btn-outline-danger">
+            <i class="bi bi-trash me-1"></i> Удалить
+          </a>
+        {% endif %}
       </div>
     </div>
   </div>
